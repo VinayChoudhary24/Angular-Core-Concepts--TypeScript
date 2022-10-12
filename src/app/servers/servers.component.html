@@ -1,0 +1,63 @@
+<!-- <p>This is servers!</p> -->
+
+<!-- Selected by NAME -->
+<!-- <app-server></app-server><span>From the Servers!</span> -->
+
+<!-- Selectedd by ATTRIBUTE
+<div app-servers></div> -->
+
+
+<!-- // ---------------------EVENT BINDING------------------------------------------------- -->
+<label>Server Name</label>
+<!-- <input type="text"
+       class="form-control" 
+       (input)="onUpdateServerName($event)">
+       <p>{{ serverName }}</p>
+       <hr> -->
+
+       <!-- // ---------------------TWO-WAY BINDING-------------------------------------------- -->
+       <input type="text"
+       class="form-control" 
+       [(ngModel)]="serverName">
+       <!-- <p>{{ serverName }}</p> -->
+       <hr>
+
+
+
+<!-- // ---------------------PROPERTY BINDING------------------------------------------------- -->
+<!-- Here we are Binding the NATIVE HTML Property  -->
+<button class="btn btn-primary"
+[disabled]="!allowNewServer"
+
+(click)="onCreateServer()">Add Server
+<!--- ---------we use EVENT BINDING to react on the CLICK EVENT------------------------------------------------- -->
+</button>
+
+<!-- <p>{{ serverCreationStatus }}</p> -->
+
+
+<!-- ---------------------DIRECTIVES *ngIf------------------------------------------------- -->
+<p *ngIf="serverCreated">Server Was Created, Server Name:-- {{ serverName }}</p>
+
+<!-- #Loca Reference for nfIf else -->
+<!-- <p *ngIf="serverCreated; else noServer">Server Was Created, Server Name:-- {{ serverName }}</p> -->
+
+<!-- <ng-template #noServer>
+       <p>No Server was Created!</p>
+</ng-template>
+ -->
+
+ <!-- ---------------------DIRECTIVES *ngFor------------------------------------------------- -->
+ <app-server *ngFor="let server of servers"></app-server>
+
+
+ <!-- Practice Directives -->
+ <!-- <button class="btn btn-primary"
+ (click)="showSecret = !showSecret">Display Details</button> -->
+ <button class="btn btn-primary"
+ (click)="onToggleDetails()">Display Details</button>
+ <hr>
+
+ <p *ngIf="showSecret">Secret Password = tuna</p>
+
+ <div *ngFor="let toggleItem of toggleDetails; let i = index">{{ toggleItem }}</div>
