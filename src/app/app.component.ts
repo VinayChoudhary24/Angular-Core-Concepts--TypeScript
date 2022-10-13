@@ -21,44 +21,8 @@ import { UsersService } from './users.service';
 export class AppComponent {
   // name = 'angular-core-concepts';
 
-// <!-- ---------------------------------------------------------------------------------- -->
-// <!-- ----------------------------PRACTICE ADVANCE DIRECTIVES------------------------------------------------ -->
-  oddNumbers = [1, 3, 5];
-  evenNumbers = [2, 4, 6];
-  onlyOdd = false;
 
-  // <!-- ----------------------------ngSwitch DIRECTIVES------------------------------------------------ -->
-  value = 10;
-
-
-  // <!-- ----------------------------- -------------------------------- -------------------------------- -->
-  // <!-- ----------------------------- SERVICES ------------------------ -------------------------------- -->
-  // accounts: {name: string, status: string}[] = [];
-
-  // constructor(private accountService: AccountService) {}
-
-  
-  // onAccountAdded(newAccount: {name: string, status: string}) {
-  //   this.accounts.push(newAccount);
-  // }
-
-  // onStatusChanged(updateInfo: {id: number, newStatus: string}) {
-  //   this.accounts[updateInfo.id].status = updateInfo.newStatus;
-  // }
-
-  // ngOnInit() {
-  //    this.accounts = this.accountService.accounts;
-  // }
-
-  // <!-- ----------------------------- -------------------------------- -------------------------------- -->
-  // <!-- -----------------------------PRACTICE SERVICES ------------------------ -------------------------------- -->  
-  activeUsers = ['Max', 'Anna'];
-  inactiveUsers = ['chris', 'Man'];
-  
-
-
-
-// //   ----------------------------GAME CONTROL-------------------------------------------------------
+  // //   ----------------------------GAME CONTROL-------------------------------------------------------
 // oddNumbers: number[] =[];
 // evenNumbers: number[] =[];
 
@@ -95,6 +59,53 @@ export class AppComponent {
 //   }
 
 
+
+// <!-- ---------------------------------------------------------------------------------- -->
+// <!-- ----------------------------PRACTICE ADVANCE DIRECTIVES------------------------------------------------ -->
+  oddNumbers = [1, 3, 5];
+  evenNumbers = [2, 4, 6];
+  onlyOdd = false;
+
+  // <!-- ----------------------------ngSwitch DIRECTIVES------------------------------------------------ -->
+  value = 10;
+
+
+
+  // <!-- ----------------------------- -------------------------------- -------------------------------- -->
+  // <!-- ----------------------------- SERVICES ------------------------ -------------------------------- -->
+  // accounts: {name: string, status: string}[] = [];
+
+  // constructor(private accountService: AccountService) {}
+
+  
+  // onAccountAdded(newAccount: {name: string, status: string}) {
+  //   this.accounts.push(newAccount);
+  // }
+
+  // onStatusChanged(updateInfo: {id: number, newStatus: string}) {
+  //   this.accounts[updateInfo.id].status = updateInfo.newStatus;
+  // }
+
+  // ngOnInit() {
+  //    this.accounts = this.accountService.accounts;
+  // }
+
+  // <!-- ----------------------------- -------------------------------- -------------------------------- -->
+  // <!-- -----------------------------PRACTICE SERVICES ------------------------ -------------------------------- -->  
+  activeUsers = ['Max', 'Anna'];
+  inactiveUsers = ['chris', 'Man'];
+
+
+  
+//   <!-- ----------------------------- -------------------------------- -------------------------------- -->
+// <!-- ----------------------------- ROUTING ------------------------ -------------------------------- -->
+  
+
+
+
+
+
+//
 }
 
 //##Creating Components from CLI

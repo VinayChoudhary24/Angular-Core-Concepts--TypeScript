@@ -8,16 +8,16 @@
 <!-- ----------------------------BASICS------------------------------------------------ -->
 
 <!-- USING BOOTSTRAP -->
-<div class="container">
+<!-- <div class="container">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12"> -->
       <!-- #This is the Place to Use SELECTORS from Component.ts Files -->
-<h3>This is App Component ts with Server</h3>
-<hr>
+<!-- <h3>This is App Component ts with Server</h3>
+<hr> -->
 <!-- <app-server></app-server> -->
 
 
-<app-servers></app-servers>
+<!-- <app-servers></app-servers> -->
 
 <!-- 
 <h3>This is App Component ts with Servers</h3>
@@ -53,9 +53,9 @@
   </div>
 </div> -->
 
-    </div>
+    <!-- </div>
   </div>
-</div>
+</div> -->
 
 <!-- ---------------------------------------------------------------------------------- -->
  <!-- ---------------------------- PRACTICE ADVANCE COMPONENTS and DATA BINDING------------------------------------------------ -->
@@ -96,14 +96,14 @@
 
 <!-- ---------------------------------------------------------------------------------- -->
  <!-- ---------------------------- PRACTICE ADVANCE DIRECTIVES------------------------------------------------ -->
- <div class="container">
+ <!-- <div class="container">
   <div class="row">
     <div class="col-xs-12">
       <button
         class="btn btn-primary"
         (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
       <br><br>
-      <ul class="list-group">
+      <ul class="list-group"> -->
         <!-- Apply the *ngIf Condition to the ODD and EVEN DIV's so that Only one is Displayed and We can Toggle  -->
         <!-- <div *ngIf="onlyOdd">
           <li
@@ -133,7 +133,7 @@
         </li>
         </div> -->
 
-      </ul>
+      <!-- </ul> -->
       <!--BASIC-HIGHLIGHT -- USING THE DIRECTIVE SELECTOR -->
       <!-- <p appBasicHighlight>Style with the BasicHighligh Directive</p> -->
       <!--BETTER-HIGHLIGHT -- USING THE DIRECTIVE SELECTOR -->
@@ -169,7 +169,7 @@
 
  <!-- ----------------------------- -------------------------------- -------------------------------- -->
 <!-- -----------------------------PRACTICE SERVICES ------------------------ -------------------------------- -->
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
       <app-active-users></app-active-users>
@@ -177,11 +177,67 @@
       <app-inactive-users></app-inactive-users>
     </div>
   </div>
-</div>
+</div> -->
 
-
+<!-- 
     </div>
   </div>
+</div> -->
+
+<!-- ----------------------------- -------------------------------- -------------------------------- -->
+<!-- ----------------------------- ROUTING ------------------------ -------------------------------- -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <ul class="nav nav-tabs">
+
+        <!-- use Special Directive routerLink="" && Add '/' for Home Routing i.e root.Route -->
+        <!-- Add routerLinkActive To SHOW/STYLE the Current ACtive Path -->
+        <li 
+        role="presentation"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <!-- Bind routerlinkActiveOptions to Make Sure only Current Path is SHOWN, exact is the property -->
+        <a routerLink="/">Home</a>
+        </li>
+
+        <!-- use Special Directive routerLink="" && ADD 'servers' for Routing to ServersComponent  -->
+        <li 
+        role="presentation"
+        routerLinkActive="active">
+        <a routerLink="servers">Servers</a>
+        </li>
+        
+        <!-- Using Property Binding with routerLink for Special Cases i.e Multiple routing -->
+        <!-- use Special Directive routerLink="" && ADD 'users' for Routing to UsersComponent  -->
+        <li 
+        role="presentation"
+        routerLinkActive="active">
+        <a [routerLink]="['users']">Users</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- <app-home></app-home> -->
+      <!-- After Routing We Render the Components with the Help of Special Directive <router-outlet> -->
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <!-- <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <app-users></app-users>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <app-servers></app-servers>
+    </div>
+  </div> -->
+
 </div>
 
 
