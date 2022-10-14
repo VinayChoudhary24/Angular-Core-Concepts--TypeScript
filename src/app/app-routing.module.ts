@@ -7,6 +7,10 @@ import { EditServerComponent } from './Servers-Routing/edit-server/edit-server.c
 import { ServerComponent } from './Servers-Routing/server/server.component';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthGuard } from "./auth-guard.service";
+import { CanDeactivatedGuard } from "./Servers-Routing/edit-server/can-deactivate-guard.service";
+import { ErrorPageComponent } from "./error-page/error-page.component";
+
 
 
 // Create the Variable To Store Multiple Routes
@@ -27,19 +31,24 @@ const appRoutes: Routes = [
   
     // Adding the CHILDREN property for Nested Routing
     // To Load the Child Routes ADD a saperate <router-outlet> in the PARENT Component i.e Servers.component 
-    { path: 'servers', component: ServersComponent, children: [
+    { path: 'servers', 
+    // canActivate: [AuthGuard], 
+    canActivateChild: [AuthGuard], component: ServersComponent, children: [
       
         // Loading the Single Server
         { path: ':id', component: ServerComponent },
   
         // USINIG Query Params --
-        { path: ':id/edit', component: EditServerComponent },
+        // Add canDeactivate Here
+        { path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivatedGuard]  },
     ] 
   },
   
   // Page Not Found Routing -- ##it should always be in the END of ROUTES
   // ** WILDCARD ROUTE -- this Menas redirect Everything that is not in Path to NOT-FOUND
-  { path: 'not-found', component: PageNotFoundComponent },
+  // { path: 'not-found', component: PageNotFoundComponent },
+  // The error-Page Path to Pass STATIC DATA for Error Messages
+  { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
   { path: '**', redirectTo: '/not-found' }
   
     //### REMOVE THEm FROM HERE AND ADD THEM AS A CHILD/NESTED  to the SERVERS PATH 

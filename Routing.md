@@ -18,3 +18,6 @@
 
       # CHILD(nested) Routes -- Adding the children Property to the PATH we want for Child Routing i.e In the App.Module.ts PATHS
           #ACCESS CHILD ROUTES -- Now Thet Requires a Saperate <ROUTER-OUTLET> i.e Now add the router-outlet inside the PARENT COMPONENT
+
+      # RouteGuards -- Functionality, Logic, Code which is executedd before a route is loaded or when you want to Leave a Route.
+          canActivateGuard 
