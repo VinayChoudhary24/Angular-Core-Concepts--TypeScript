@@ -20,4 +20,9 @@
           #ACCESS CHILD ROUTES -- Now Thet Requires a Saperate <ROUTER-OUTLET> i.e Now add the router-outlet inside the PARENT COMPONENT
 
       # RouteGuards -- Functionality, Logic, Code which is executedd before a route is loaded or when you want to Leave a Route.
-          canActivateGuard 
+          canActivateGuard
+
+      # INTERFACE -- it Works Like DESTRUCTURING the Code which will be Used Alot..
+
+      # Location Strategies -- This is for the ENVIRONMENTAL VARIABLES i.e the Development variables and the Deployment Variables, to make sure that the Development variables are PASSED to the Deployment Environment and The URL WORKS for Different Devices and the BROWSERS...
+            * Some OLD Browsers Dont Return index.html file when 404 error Occurs, so we Use useHash.. after this the web Server only Cares About the Part Before the # in the URL

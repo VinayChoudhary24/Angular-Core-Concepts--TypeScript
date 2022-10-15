@@ -1,6 +1,7 @@
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
 
+// INTERFACE -- ite Works Like DESTRUCTURING the Code which will be Used Alot..
 export interface CanComponentDeactivate {
     canDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
 }

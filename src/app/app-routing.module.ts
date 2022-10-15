@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthGuard } from "./auth-guard.service";
 import { CanDeactivatedGuard } from "./Servers-Routing/edit-server/can-deactivate-guard.service";
 import { ErrorPageComponent } from "./error-page/error-page.component";
+import { ServerResolver } from "./Servers-Routing/server/server-resolver.services";
 
 
 
@@ -36,7 +37,7 @@ const appRoutes: Routes = [
     canActivateChild: [AuthGuard], component: ServersComponent, children: [
       
         // Loading the Single Server
-        { path: ':id', component: ServerComponent },
+        { path: ':id', component: ServerComponent, resolve: {server: ServerResolver} },
   
         // USINIG Query Params --
         // Add canDeactivate Here
@@ -62,6 +63,8 @@ const appRoutes: Routes = [
 @NgModule({
     imports: [
      // For Routing
+    //  This is the Place to use Location Strategies, useHash: false: it is  false by default 
+    // RouterModule.forRoot(appRoutes, {useHash: true}),
     RouterModule.forRoot(appRoutes),
     ],
     exports: [RouterModule]
