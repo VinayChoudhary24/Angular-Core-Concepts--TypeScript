@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 // import { AccountService } from './account.service';
 import { UsersService } from './users.service';
 
@@ -35,7 +36,6 @@ export class AppComponent {
 //    }
 // }
 
-
 // <!-- ---------------------------------------------------------------------------------- -->
 // <!-- ---------------------------- PRACTICE ADVANCE COMPONENTS and DATA BINDING------------------------------------------------ -->
 // serverElements = [];
@@ -59,7 +59,6 @@ export class AppComponent {
 //   }
 
 
-
 // <!-- ---------------------------------------------------------------------------------- -->
 // <!-- ----------------------------PRACTICE ADVANCE DIRECTIVES------------------------------------------------ -->
   oddNumbers = [1, 3, 5];
@@ -68,7 +67,6 @@ export class AppComponent {
 
   // <!-- ----------------------------ngSwitch DIRECTIVES------------------------------------------------ -->
   value = 10;
-
 
 
   // <!-- ----------------------------- -------------------------------- -------------------------------- -->
@@ -95,17 +93,79 @@ export class AppComponent {
   activeUsers = ['Max', 'Anna'];
   inactiveUsers = ['chris', 'Man'];
 
-
   
 //   <!-- ----------------------------- -------------------------------- -------------------------------- -->
 // <!-- ----------------------------- ROUTING ------------------------ -------------------------------- -->
   
 
+// <!-- ----------------------------- -------------------------------- -------------------------------- -->
+// <!-- ----------------------------- ---------OBSERVABLES ------------------------ -------------------------------- -->
 
+// <!-- ----------------------------- -------------------------------- -------------------------------- -->
+// <!-- -------- ----------- --------- FORMS -- TEMPLATE-DRIVEN ------------------------------------ -->
+@ViewChild('f') signupForm: NgForm;
 
+// quesstion Property
+defaultQuestion: string = 'pet';
+// Answer Property
+answer: string = '';
 
+// Property for Radio Buttons
+genders = ['Male', 'Female'];
 
-//
+// Ummarize the DATA
+user: {
+  username: '',
+  email: '',
+  secretQuestion: '',
+  answer: '',
+  gender: '',
+}
+submitted = false;
+
+suggestUserName() {
+  const suggestedName = 'Superuser';
+  // // passing the Exact Copy of the Form
+  // // Use setValue to set the Whole Form Values by click
+  // this.signupForm.setValue({
+  //   userData: {
+  //     username: suggestedName,
+  //     email: '',
+  //   },
+  //   secret: 'pet',
+  //   questionAnswer: '',
+  //   gender: 'male',
+  // })
+
+  // The Better Way
+  // use pathValue to set some Values by Click
+  this.signupForm.form.patchValue({
+    userData: {
+      username: suggestedName,
+    }
+  });
+}
+
+// // This function will Submit the Form
+// onSubmit(form: NgForm) {
+//   console.log(form)
+// }
+
+// Accessing the For With View Child
+onSubmit() {
+  // console.log(this.signupForm)
+  this.submitted = true;
+  // onSubmit we Update the DATA
+  this.user.username = this.signupForm.value.userData.username;
+  this.user.email = this.signupForm.value.userData.email;
+  this.user.secretQuestion = this.signupForm.value.secret;
+  this.user.answer = this.signupForm.value.userData.questionAnswer;
+  this.user.gender = this.signupForm.value.gender;
+
+  // to reset the Form
+  this.signupForm.reset();
+}
+
 }
 
 //##Creating Components from CLI

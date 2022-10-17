@@ -26,3 +26,8 @@
 
       # Location Strategies -- This is for the ENVIRONMENTAL VARIABLES i.e the Development variables and the Deployment Variables, to make sure that the Development variables are PASSED to the Deployment Environment and The URL WORKS for Different Devices and the BROWSERS...
             * Some OLD Browsers Dont Return index.html file when 404 error Occurs, so we Use useHash.. after this the web Server only Cares About the Part Before the # in the URL
+
+      #     // Add Router to use thr Routing functionality -- For RELATIVE PATH
+           //  Add ActivatedRoute to tell the -- CURRENT PATH 
+
+      # .subscribe -- when we .subscribe to any function we dont need to ngDestroy(clean-up) the subscription because Angular does that for us but when we create our own OBSERVABLES we need to ngDestroy Them.       
