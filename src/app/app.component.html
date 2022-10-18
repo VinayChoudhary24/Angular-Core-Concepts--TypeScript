@@ -267,14 +267,14 @@
 
 <!-- ----------------------------- -------------------------------- -------------------------------- -->
 <!-- ----------------------------- --------- FORMS -- TEMPLATE-DRIVEN ------------------------------------ -->
-<div class="container">
+<!-- <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"> -->
       <!-- Add ngSubmit to Bind the onSubmit Function -->
       <!-- Add #f="ngForm" to get the Values Entered by User-->
       <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm"> -->
         <!-- Accessing the Valuew with @viewChild -->
-        <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <!-- <form (ngSubmit)="onSubmit()" #f="ngForm">
         <div 
         id="user-data" 
         ngModelGroup="userData"
@@ -287,10 +287,10 @@
             class="form-control"
             ngModel
             name="username"
-            required>
+            required> -->
             <!-- ngModel and name="" will Help Angular to register/Detect the Input Field -->
             <!-- add required Attribute to the Input so that angular treats this as a INVALID input if its EMPTY -->
-          </div>
+          <!-- </div>
           <button 
           class="btn btn-default" 
           type="button" 
@@ -305,12 +305,12 @@
             name="email"
             required
             email
-            #email="ngModel">
+            #email="ngModel"> -->
             <!-- ngModel and name="" will Help Angular to Register/Detect the Input Field -->
             <!-- add required Attribute to the Input so that angular treats this as a INVALID input if its EMPTY -->
             <!-- add email Attribute to the Input so that angular checks for a Valid email Address -->
             <!-- Add #email="ngModel" to Check and Output the Span tag if the email is inValid -->
-            <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid Email.</span>
+            <!-- <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid Email.</span>
           </div>
         </div>
         <p *ngIf="!userData.valid && userData.touched">User Data is invalid.</p>
@@ -320,24 +320,24 @@
           id="secret" 
           class="form-control"
           [ngModel]="defaultQuestion"
-          name="secret">
+          name="secret"> -->
           <!-- ngModel and name="" will Help Angular to Register/Detect the Input Field -->
-            <option value="pet">Your first Pet?</option>
+            <!-- <option value="pet">Your first Pet?</option>
             <option value="teacher">Your first teacher?</option>
           </select>
-        </div>
+        </div> -->
         <!-- For the Question Answer -->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <textarea 
           name="questionAnswer" 
           rows="3"
          [(ngModel)]="answer"
          class="form-control"></textarea>
-        </div>
+        </div> -->
         <!-- We are Using Two-way data Binding for the answer and String Interpolation to Output -->
-        <p>Your Answer: {{ answer }}</p>
+        <!-- <p>Your Answer: {{ answer }}</p> -->
         <!-- The Gender Section -->
-        <div class="radio" *ngFor="let gender of genders">
+        <!-- <div class="radio" *ngFor="let gender of genders">
           <label>
             <input 
             type="radio"
@@ -349,14 +349,14 @@
         <button 
         class="btn btn-primary" 
         type="submit"
-        [disabled]="!f.valid">Submit</button>
+        [disabled]="!f.valid">Submit</button> -->
         <!-- The disabled Property Binding will make the Button Disable if the FORM(f) is Not(!) Valid -->
-      </form>
+      <!-- </form>
     </div>
   </div>
-  <hr>
+  <hr> -->
   <!-- Summarize the Whole DAta -->
-  <div class="row" *ngIf="submitted">
+  <!-- <div class="row" *ngIf="submitted">
     <div class="col-xs-12">
       <h3>Your Data</h3>
       <p>Username: {{ user.username }}</p>
@@ -364,6 +364,118 @@
       <p>Secret Question: Your first {{ user.secretQuestion }}</p>
       <p>Answer: {{ user.answer }}</p>
       <p>Gender: {{ user.gender }}</p>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- ----------------------------- -------------------------------- -------------------------------- -->
+<!-- ----------------------------- --------- FORMS --REACTIVE APPROACH ------------------------------------ -->
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"> -->
+      <!-- Add formGroup Direcive to Synchronize FORM from TypeScript to HTML -->
+      <!-- ngSubmit will Submit the Form on Click -->
+      <!-- <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            formControlName="username"
+            class="form-control"> -->
+            <!-- formControlName tells ANGULAR that this is the name of this PROPRTY in my TypeScript Cod, Now This username INPUT is Connected to the username Property -->
+            <!-- THis checks the Validation -->
+            <!-- <span *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched" 
+            class="help-block">
+            <span *ngIf="signupForm.get('username').errors['nameIsForbidden']">This name is invalid.</span>
+            <span *ngIf="signupForm.get('username').errors['required']">This Field is Required.</span>
+            </span>
+        </div>
+        <div class="form-group">
+          <label for="email">email</label>
+          <input
+            type="text"
+            id="email"
+            formControlName="email"
+            class="form-control"> -->
+            <!-- formControlName tells ANGULAR that this is the name of this PROPERTY in my TypeScript Code, Now This email INPUT is Connected to the email Property -->
+            <!-- This checks the Validation -->
+            <!-- <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched" 
+            class="help-block">Please enter a valid Email.</span>
+        </div>
+        <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input
+              type="radio"
+              formControlName="gender"
+              [value]="gender">{{ gender }}
+          </label> -->
+          <!-- formControlName tells ANGULAR that this is the name of this PROERTY in my TypeScript Code, Now This gender INPUT is Connected to the gender Property -->
+        <!-- </div> -->
+        <!-- adding Arrays of Form Controls -->
+        <!-- <div formArrayName="hobbies">
+          <h4>Your Hobbies</h4>
+          <button 
+          class="btn btn-default" 
+          type="button" 
+          (click)="onAddHobby()">Add Hobby</button>
+        </div>
+        <div class="form-group" 
+        *ngFor="let hobbyControl of getControls(); let i = index">
+      <input type="text" class="form-control" [formControlName]="i"></div>
+
+        <span *ngIf="!signupForm.valid && signupForm.touched" 
+            class="help-block">Please enter a valid data.</span>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+ -->
+
+ <!-- ----------------------------- -------------------------------- -------------------------------- -->
+<!-- -------- --------- PRACTICE FORMS --REACTIVE APPROACH ------------------------------------ -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- Add the Form Element -->
+      <!-- Use Property Binding to Synchronize the Form with TS[formGroup]="projectForm" -->
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Project Name</label>
+          <input 
+          type="text" 
+          id="name"
+          formControlName="projectName" 
+          class="form-control">
+        </div>
+        <span *ngIf="!projectForm.get('projectName').valid && projectForm.get('projectName').touched" 
+        class="help-block">
+          Please enter a Valid Project Name.
+        </span>
+        <div class="form-group">
+          <label for="email">Mail</label>
+          <input 
+          type="email" 
+          id="email"
+          formControlName="email" 
+          class="form-control">
+        </div>
+        <div class="from-group">
+          <label for="status">Project Status</label>
+          <select 
+          id="status"
+          formControlName="projectStatus" 
+          class="form-control">
+            <option value="stable">Stable</option>
+            <option value="critical">Critical</option>
+            <option value="finished">Finished</option>
+          </select>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary">Create Project</button>
+      </form>
     </div>
   </div>
 </div>

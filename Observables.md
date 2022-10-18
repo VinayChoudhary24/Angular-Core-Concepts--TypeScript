@@ -17,8 +17,9 @@
       * USING COMPLETE to -- EMITTING NEW DATA
 
 # Common Observables
-     1-- params                 
+     1-- params
 
+     2-- valueChanges
 
 # Operators -- MAGIC Feature of RxJS Library -- Helps us to Transform DATA
      * They are Called by PIPE() Method

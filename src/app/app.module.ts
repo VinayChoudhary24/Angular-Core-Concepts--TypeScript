@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 // Required for ngModule on INPUT [SUB-PACKAGES] [For TYPESCRIPT]
 // For Angular Forms
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -92,6 +92,9 @@ import { AppComponent } from './app.component';
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
     // AppRoutingModule,
+
+    // FOR REACTIVE FROMS APPROACH
+    ReactiveFormsModule,
 
     // / ----------------------- ROUTING -----------------------------------------------------
     // AppRoutingModule,
