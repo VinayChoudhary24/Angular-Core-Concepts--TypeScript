@@ -8,6 +8,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 // import { AccountService } from './account.service';
 import { UsersService } from './users.service';
 import { Observable } from 'rxjs'
+import { HttpClient } from '@angular/common/http';
 
 //## To Use BootStrap we need to Inform Angular in ANGULAR.JSON File in STYLES[]
    //-- "node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -243,51 +244,122 @@ export class AppComponent implements OnInit {
 //   return promise
 // }
 
+// // <!-- ----------------------------- -------------------------------- -------------------------------- -->
+// // // // <!-- -------- --------- PRACTICE FORMS --REACTIVE APPROACH ------------------------------------ -->
+
+// // Property to Access the Form
+// projectForm: FormGroup;
+
+// // Custom Validators
+// forbiddenProjectNames = ['test', 'test2'];
+
+// // initialize the Form in ngOnInit always
+// ngOnInit() {
+//   this.projectForm = new FormGroup({
+//     'projectName': new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
+//     'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmail),
+//     'projectStatus': new FormControl('critical'),
+//   });
+// }
+
+// // Custom Validators
+// forbiddenNames(control: FormControl): {[s: string]: boolean} {
+//   if ((control.value) === 'test', 'test2') {
+//         return {'ProjectNameIsForbidden': true};
+//       } else {
+//         //## if validation is successfull we have to NULL here ALWAYS
+//         return null;
+//       }
+// }
+
+// // Async Validator
+// forbiddenEmail(control: FormControl): Promise<any> | Observable<any> {
+//   const promise = new Promise<any>( (resolve, reject) => {
+//     setTimeout( () => {
+//       if (control.value === 'test@test.com') {
+//         resolve( {'emailIsForbidden': true} )
+//       } else {
+//         resolve(null)
+//       }
+//     }, 2000)
+//   });
+//   return promise;
+// }
+
+// onSubmit() {
+//   console.log(this.projectForm.value)
+// }
+
+
+// // <!-- ----------------------------- -------------------------------- -------------------------------- -->
+// // <!-- -------- --------- -------------------PIPES ------------------------------------ -->
+// servers = [
+//   {
+//     instanceType: 'medium',
+//     name: 'Production',
+//     status: 'stable',
+//     started: new Date(15, 1, 2017)
+//   },
+//   {
+//     instanceType: 'large',
+//     name: 'User Database',
+//     status: 'stable',
+//     started: new Date(15, 1, 2017)
+//   },
+//   {
+//     instanceType: 'small',
+//     name: 'Development Server',
+//     status: 'offline',
+//     started: new Date(15, 1, 2017)
+//   },
+//   {
+//     instanceType: 'small',
+//     name: 'Testing Environment Server',
+//     status: 'stable',
+//     started: new Date(15, 1, 2017)
+//   }
+// ];
+// filteredStatus = '';
+
+// ngOnInit() {}
+
+// getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
+//   return {
+//     'list-group-item-success': server.status === 'stable',
+//     'list-group-item-warning': server.status === 'offline',
+//     'list-group-item-danger': server.status === 'critical'
+//   };
+// }
+
+
 // <!-- ----------------------------- -------------------------------- -------------------------------- -->
-// // // <!-- -------- --------- PRACTICE FORMS --REACTIVE APPROACH ------------------------------------ -->
+// <!-- -------- --------- ------------------- HTTP ------------------------------------ -->
+loadedPosts = [];
 
-// Property to Access the Form
-projectForm: FormGroup;
+  // Required to Use the http Client 
+constructor(private http: HttpClient) {}
 
-// Custom Validators
-forbiddenProjectNames = ['test', 'test2'];
 
-// initialize the Form in ngOnInit always
-ngOnInit() {
-  this.projectForm = new FormGroup({
-    'projectName': new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
-    'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmail),
-    'projectStatus': new FormControl('critical'),
-  });
-}
+ngOnInit() {}
 
-// Custom Validators
-forbiddenNames(control: FormControl): {[s: string]: boolean} {
-  if ((control.value) === 'test', 'test2') {
-        return {'ProjectNameIsForbidden': true};
-      } else {
-        //## if validation is successfull we have to NULL here ALWAYS
-        return null;
-      }
-}
 
-// Async Validator
-forbiddenEmail(control: FormControl): Promise<any> | Observable<any> {
-  const promise = new Promise<any>( (resolve, reject) => {
-    setTimeout( () => {
-      if (control.value === 'test@test.com') {
-        resolve( {'emailIsForbidden': true} )
-      } else {
-        resolve(null)
-      }
-    }, 2000)
-  });
-  return promise;
-}
+  onCreatePost(postData: { title: string; content: string }) {
+    // Send Http request
+    // console.log(postData);
+    // ## if we Dont Subscribe to the Request it will not be Send by Angular, Always Subscribe(observable)
+    this.http.post('https://back-end-for-angular-58f78-default-rtdb.firebaseio.com/posts.json', postData).subscribe( (response) => {
+      console.log(response);
+    });
+  }
 
-onSubmit() {
-  console.log(this.projectForm.value)
-}
+  onFetchPosts() {
+    // Send Http request
+  }
+
+  onClearPosts() {
+    // Send Http request
+  }
+
 
 }
 

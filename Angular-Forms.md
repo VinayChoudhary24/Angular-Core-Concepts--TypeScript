@@ -15,3 +15,15 @@
 
 
     #2 REACTIVE --  Form is Created Programmatically and Synchronized with the DOM.
+
+
+# VALIDATION  
+/* This will Make Sure that the whole Form is not getting the Red Color,
+ -- input.ng-invalid, Make Sure only invalid input filed gets the Red Color,
+ -- .ng-touched, Make Sure that the Red Color is Only Shown after the USER has Touched the FORM and Not before that */
+
+<!-- .CSS CLASS -->
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}

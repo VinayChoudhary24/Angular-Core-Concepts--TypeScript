@@ -4,9 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 // Required for ngModule on INPUT [SUB-PACKAGES] [For TYPESCRIPT]
 // For Angular Forms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// This is Required for HTTP Requests
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+// import { ShortenPipe } from './shorten.pipe';
+// import { FilterPipe } from './filter.pipe';
 
 // -----------------------------BASICS ----------------------------------------
 // import { ServerComponent } from './Server/server.component';
@@ -84,12 +88,17 @@ import { AppComponent } from './app.component';
     // ErrorPageComponent,
     // HomeObservablesComponent,
     // UserObservablesComponent,
+    
+    // Thisisfor the PIPE
+    // ShortenPipe,
+    // FilterPipe, 
   ],
   imports: [
     BrowserModule,
     // Import FormsModule Package [For ANGULAR]
     FormsModule,
     // import HttpClientModule after BrowserModule.
+    // This is Required for HTTP Requests
     HttpClientModule,
     // AppRoutingModule,
 

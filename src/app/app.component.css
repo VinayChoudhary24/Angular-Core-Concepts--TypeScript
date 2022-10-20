@@ -18,6 +18,16 @@
    */
 
    /* -----------------------------FORMS ----------------------------------------- */
-   input.ng-invalid.ng-touched {
+   /* input.ng-invalid.ng-touched {
     border: 1px solid red;
-   }
+   } */
+
+   /* HTTP REQUEST */
+   .container {
+    margin-top: 30px;
+  }
+  
+  .row {
+    margin: 20px 0;
+  }
+  
