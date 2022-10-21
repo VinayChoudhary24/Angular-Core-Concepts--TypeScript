@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 // For REACTIVE APPROACH
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -9,6 +9,10 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from './users.service';
 import { Observable } from 'rxjs'
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Post } from './http-post.model';
+import { PostService } from './http-posts.srvices';
+import { Subscription } from 'rxjs';
 
 //## To Use BootStrap we need to Inform Angular in ANGULAR.JSON File in STYLES[]
    //-- "node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -26,7 +30,7 @@ import { HttpClient } from '@angular/common/http';
 // <!-- ---------------------------------------------------------------------------------- -->
 // <!-- ----------------------------BASICS------------------------------------------------ -->
    //##1 - COMPONENTS:- headers, services etc.. [RE-USABLE]
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   // name = 'angular-core-concepts';
 
 
@@ -334,31 +338,105 @@ export class AppComponent implements OnInit {
 
 // <!-- ----------------------------- -------------------------------- -------------------------------- -->
 // <!-- -------- --------- ------------------- HTTP ------------------------------------ -->
-loadedPosts = [];
+loadedPosts: Post[] = [];
+
+// Property for LOADING Indicator
+isFetchingPosts: boolean = false;
+
+// To HANDLE ERRORS
+error = null;
+
+// To unsubscribe the error
+private errorSub: Subscription;
 
   // Required to Use the http Client 
-constructor(private http: HttpClient) {}
+constructor( private http: HttpClient,
+             private postService: PostService ) {}
 
 
-ngOnInit() {}
+ngOnInit() {
+  // better way of handling errors
+  this.errorSub = this.postService.error.subscribe( (errorMessage) => {
+    this.error = errorMessage
+  })
+
+  this.isFetchingPosts = true;
+  // Calling fetchPosts Method Here so that whenever the Page LOADS/INITIALIZED it fetches the data
+  this.postService.fetchPosts()
+  // After creating post.service we can Subscribe to the Request Here
+  .subscribe( (posts) => {
+    this.isFetchingPosts = false;
+    this.loadedPosts = posts;
+  }, 
+  // error => {
+    // this.error = error.message;
+  // }
+  )
+}
 
 
-  onCreatePost(postData: { title: string; content: string }) {
+  //## POST -- it TAKES two Arguments i.e URL and the postData
+  // Using POST INTERFACE
+onCreatePost(postData: Post) {
     // Send Http request
     // console.log(postData);
     // ## if we Dont Subscribe to the Request it will not be Send by Angular, Always Subscribe(observable)
-    this.http.post('https://back-end-for-angular-58f78-default-rtdb.firebaseio.com/posts.json', postData).subscribe( (response) => {
-      console.log(response);
-    });
+    // this.http.post< {name: string} >('https://back-end-for-angular-58f78-default-rtdb.firebaseio.com/posts.json', postData).subscribe( (response) => {
+    //   console.log(response);
+    // });
+    
+    // This will call the Method createAndStorePost from the http-post.service 
+    this.postService.createAndStorePost(postData.title, postData.content);
   }
 
   onFetchPosts() {
     // Send Http request
+    this.isFetchingPosts = true;
+  // Calling fetchPosts Method Here so that whenever the Page LOADS/INITIALIZED it fetches the data
+  this.postService.fetchPosts()
+  // After creating post.service we can Subscribe to the Request Here
+  .subscribe( (posts) => {
+    this.isFetchingPosts = false;
+    this.loadedPosts = posts;
+  }, 
+  // error => {
+    // this.error = error.message;
+  // }
+  )
   }
 
   onClearPosts() {
     // Send Http request
+    this.postService.deletePosts().subscribe( () => {
+      this.loadedPosts = [];
+    })
   }
+
+  ngOnDestroy() {
+    this.errorSub.unsubscribe();
+  }
+
+  // GET -- it Takes only ine Argument i.e URl to GET
+  // private fetchPosts() {
+  //   this.isFetchingPosts = true;
+  //   // The GET method can take the TYPE of the RESPONSE inside the ANGLED Brackets <>
+  //   this.http.get< {[ key: string ]: Post } >('https://back-end-for-angular-58f78-default-rtdb.firebaseio.com/posts.json')
+  //   // Using RxJS Operators i.e PIPES, OSERVABLES to transform DATA
+  //   .pipe(map( (response) => {
+  //     const postArray: Post[] = [];
+  //     for (const key in response) {
+  //       if(response.hasOwnProperty(key)) {
+  //         postArray.push({ ...response[key], id: key })
+  //       }
+  //     }
+  //     return postArray;
+  //   }))
+  //   .subscribe( (posts) => {
+  //     this.isFetchingPosts = false;
+  //     // console.log(posts);
+  //     this.loadedPosts = posts;
+  //   })
+  // }
 
 
 }
